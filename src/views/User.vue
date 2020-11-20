@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <p>aqui empieza la magia</p>
+    <h3>User creation</h3>
     <form>
       <div class="form-group">
         <label for="first-name">First name:</label>
@@ -41,7 +41,8 @@
           class="form-control"
           id="password" placeholder="Password">
       </div>
-      <button type="button" @click="createUser()" class="btn btn-primary">Register</button>
+      <button type="button" @click="createUser()" class="btn btn-dark">Register</button>
+      <button type="button" @click="goToHome()" class="btn btn-dark">Cancel</button>
     </form>
   </div>
 </template>
@@ -66,6 +67,9 @@ export default {
     createUser() {
       const response = postUser(this.userData);
       console.log(response);
+    },
+    goToHome() {
+      this.$router.push({ name: 'Home' });
     },
   },
 };
