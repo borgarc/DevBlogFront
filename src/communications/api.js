@@ -18,6 +18,17 @@ export async function getAccessToken(userData) {
   return response.data;
 }
 
+export async function getProfile() {
+  const token = localStorage.getItem('token');
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get('http://localhost:8000/profile/', config);
+  return response.data;
+}
+
 export async function postUser(data) {
   const response = await axios.post('http://localhost:8000/people/', data);
   return response.data;

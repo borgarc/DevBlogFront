@@ -39,6 +39,7 @@
 
 <script>
 import { getAccessToken } from '@/communications/api';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -52,12 +53,15 @@ export default {
     };
   },
   methods: {
+    ...mapActions([
+      'fetchProfile',
+    ]),
     async logIn() {
       const response = await getAccessToken(this.userCredentials);
       const token = response.access_token;
       localStorage.setItem('token', token);
       localStorage.setItem('username', this.userCredentials.username);
-      this.$emit('set-nick', this.userCredentials.username);
+      await this.fetchProfile();
       this.goToHome();
     },
     goToHome() {

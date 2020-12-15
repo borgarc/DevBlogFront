@@ -16,7 +16,7 @@
           <a class="nav-link" href="#">Create Post <span class="sr-only">(current)</span></a>
         </li>
       </ul>
-      <ul v-if="userNick==null" class="navbar-nav ml-auto">
+      <ul v-if="this.username==null" class="navbar-nav ml-auto">
         <li class="nav-item active">
           <anchor @click="goToLogIn()"
             class="nav-link"
@@ -30,11 +30,11 @@
             <span class="sr-only">(current)</span></anchor>
         </li>
       </ul>
-      <ul v-if="userNick!=null" class="navbar-nav ml-auto">
+      <ul v-if="this.username!=null" class="navbar-nav ml-auto">
         <li class="nav-item active">
           <anchor @click="goToLogIn()"
             class="nav-link"
-            href="#">{{ userNick }}
+            href="#">{{ username }}
             <span class="sr-only">(current)</span></anchor>
         </li>
         <li class="nav-item active">
@@ -49,16 +49,22 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex';
+
 export default {
-  props: {
-    userNick: String,
+  computed: {
+    ...mapGetters([
+      'username',
+    ]),
   },
   methods: {
+    ...mapMutations([
+      'setNullProfile',
+    ]),
     logOut() {
-      // localStorage.removeItem('username');
-      // localStorage.removeItem('token');
-      this.$emit('log-out', null);
-      // this.username = null;
+      localStorage.removeItem('username');
+      localStorage.removeItem('token');
+      this.setNullProfile();
     },
     goToCreateUser() {
       this.$router.push({ name: 'User' });
