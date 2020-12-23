@@ -11,12 +11,21 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav rl-auto">
+      <ul v-if="this.profileIsAdmin==true" class="navbar-nav rl-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Create Post <span class="sr-only">(current)</span></a>
+          <anchor @click="goToCreatePost()"
+            class="nav-link"
+            href="#">Create Post
+            <span class="sr-only">(current)</span></anchor>
+        </li>
+        <li class="nav-item active">
+          <anchor @click="goToNewImage()"
+            class="nav-link"
+            href="#">New Image
+            <span class="sr-only">(current)</span></anchor>
         </li>
       </ul>
-      <ul v-if="this.username==null" class="navbar-nav ml-auto">
+      <ul v-if="this.profileUsername==null" class="navbar-nav ml-auto">
         <li class="nav-item active">
           <anchor @click="goToLogIn()"
             class="nav-link"
@@ -30,11 +39,11 @@
             <span class="sr-only">(current)</span></anchor>
         </li>
       </ul>
-      <ul v-if="this.username!=null" class="navbar-nav ml-auto">
+      <ul v-if="this.profileUsername!=null" class="navbar-nav ml-auto">
         <li class="nav-item active">
           <anchor @click="goToLogIn()"
             class="nav-link"
-            href="#">{{ username }}
+            href="#">{{ profileUsername }}
             <span class="sr-only">(current)</span></anchor>
         </li>
         <li class="nav-item active">
@@ -54,7 +63,8 @@ import { mapMutations, mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters([
-      'username',
+      'profileUsername',
+      'profileIsAdmin',
     ]),
   },
   methods: {
@@ -74,6 +84,12 @@ export default {
     },
     goToHome() {
       this.$router.push({ name: 'Home' });
+    },
+    goToCreatePost() {
+
+    },
+    goToNewImage() {
+      this.$router.push({ name: 'Image' });
     },
   },
 };

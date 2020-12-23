@@ -11,20 +11,5 @@ export default {
   components: {
     NavBar,
   },
-  /* data() {
-    return {
-      nick: null,
-    };
-  },
-  methods: {
-    logIn(userNick) {
-      this.nick = userNick;
-    },
-    logOut() {
-      localStorage.removeItem('username');
-      localStorage.removeItem('token');
-      this.nick = null;
-    },
-  }, */
 };
 </script>

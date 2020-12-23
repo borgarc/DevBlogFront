@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { getPost } from '@/communications/api';
+import { mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -25,8 +25,13 @@ export default {
       postData: Object,
     };
   },
+  computed: {
+    ...mapGetters([
+      'getPostById',
+    ]),
+  },
   async mounted() {
-    this.postData = await getPost(this.id);
+    this.postData = this.getPostById(this.id);
   },
 };
 </script>

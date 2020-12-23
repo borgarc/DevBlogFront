@@ -1,9 +1,9 @@
 import { getProfile } from '@/communications/api';
 
 const getters = {
-  id: (state) => state.id,
-  username: (state) => state.username,
-  isAdmin: (state) => state.isAdmin,
+  profileId: (state) => state.id,
+  profileUsername: (state) => state.username,
+  profileIsAdmin: (state) => state.isAdmin,
 };
 
 const mutations = {
@@ -28,9 +28,9 @@ const actions = {
 
 export default {
   state: () => ({
-    id: null,
-    username: null,
-    isAdmin: false,
+    profileId: null,
+    profileUsername: null,
+    profileIsAdmin: false,
   }),
   getters,
   mutations,
