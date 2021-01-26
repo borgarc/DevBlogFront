@@ -35,6 +35,18 @@ export async function getProfile() {
   return response.data;
 }
 
+export async function getImages() {
+  const config = setAuthorizationHeader();
+  const response = await axios.get('http://localhost:8000/images/', config);
+  return response.data;
+}
+
+export async function postPost(data) {
+  const config = setAuthorizationHeader();
+  const response = await axios.post('http://localhost:8000/posts/', data, config);
+  return response.data;
+}
+
 export async function postImage(data) {
   const config = setAuthorizationHeader();
   config.headers['Content-Type'] = 'multipart/form-data';

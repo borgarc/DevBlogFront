@@ -86,7 +86,7 @@ export default {
       this.$router.push({ name: 'Home' });
     },
     goToCreatePost() {
-
+      this.$router.push({ name: 'Post' });
     },
     goToNewImage() {
       this.$router.push({ name: 'Image' });

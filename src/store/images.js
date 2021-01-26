@@ -1,4 +1,4 @@
-import { postImage } from '@/communications/api';
+import { postImage, getImages } from '@/communications/api';
 
 const getters = {
   images: (state) => state.images,
@@ -13,6 +13,10 @@ const mutations = {
 const actions = {
   async fetchImage(context, data) {
     const response = await postImage(data);
+    context.commit('setImages', response);
+  },
+  async fetchImages(context) {
+    const response = await getImages();
     context.commit('setImages', response);
   },
 };
