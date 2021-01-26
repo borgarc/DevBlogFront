@@ -7,20 +7,25 @@
 <script>
 // @ is an alias to /src
 import Post from '@/components/Post.vue';
-import { getPosts } from '@/communications/api';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Home',
   components: {
     Post,
   },
-  data() {
-    return {
-      posts: null,
-    };
-  },
   async mounted() {
-    this.posts = await getPosts();
+    await this.fetchPosts();
+  },
+  computed: {
+    ...mapGetters([
+      'posts',
+    ]),
+  },
+  methods: {
+    ...mapActions([
+      'fetchPosts',
+    ]),
   },
 };
 </script>

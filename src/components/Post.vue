@@ -2,7 +2,7 @@
   <div>
     <h3>{{ postData.title }}</h3>
     <img v-if="postData.image != null" src="" alt="">
-    <span>{{ postData.content }}</span>
+    <div v-html="postData.content" />
     <video v-if="postData.video != null" width="320" height="240" controls>
       <source src="" type="video/mp4">
       Your browser does not support the video tag.
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { getPost } from '@/communications/api';
+import { mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -25,8 +25,13 @@ export default {
       postData: Object,
     };
   },
+  computed: {
+    ...mapGetters([
+      'getPostById',
+    ]),
+  },
   async mounted() {
-    this.postData = await getPost(this.id);
+    this.postData = this.getPostById(this.id);
   },
 };
 </script>
